@@ -7,7 +7,7 @@ config BOARD
     default "5x12"
 
 config ZMK_KEYBOARD_NAME
-    default "5x12"
+    default "kei 5x12"
 
 if USB
 

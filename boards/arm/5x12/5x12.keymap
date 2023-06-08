@@ -13,9 +13,10 @@
 #define LAYER_1 1
 #define LAYER_2 2
 #define LAYER_3 3
+#define LAYER_4 4
 
 &mt {
-    tapping-term-ms = <200>;
+    retro-tap;
 };
 
 / {
@@ -30,14 +31,14 @@
             // |SHF/Z| X   | C   | V   | B   |                  | N   | M   | < , | > . |SHF/?|
             // `-----'-----'-----'-----'-----'                  `-----'-----'-----'-----'-----'
             //                 .-------.-------.-------.-------.-------.-------.
-            //                 |CMD/ESC|OPT/SPC|CTR/TAB|L1/ENTR|L2/BSPC|L3/DEL |
+            //                 |CMD/TAB| L1/SPC|CTR/ESC|ALT/DEL|L2/BSPC|L3/ENTR|
             //                 '-------'-------'-------'-------'-------'-------'
             bindings = <
                 &trans    &trans     &trans    &trans    &trans      &trans     &trans     &trans     &trans       &trans    &trans    &trans
                 &kp Q      &kp W     &kp E     &kp R        &kp T    &trans     &trans     &kp Y      &kp U        &kp I      &kp O     &kp P
                 &kp A      &kp S     &kp D     &kp F        &kp G    &trans     &trans     &kp H      &kp J        &kp K      &kp L     &kp SEMI
                 &mt LSHIFT Z      &kp X     &kp C     &kp V        &kp B    &trans     &trans     &kp N      &kp M        &kp COMMA  &kp DOT   &mt RSHIFT SLASH
-                &trans    &trans     &trans    &mt LGUI ESC  &mt LALT SPACE  &mt LCTRL TAB  &lt LAYER_1 RET  &lt LAYER_2 BSPC  &lt LAYER_3 DEL  &trans     &trans &trans  
+                &trans    &trans     &trans    &mt LGUI TAB  &mt LAYER_1 SPACE  &mt LCTRL TAB  &lt RALT DEL  &lt LAYER_2 BSPC  &lt LAYER_3 RET  &trans     &trans &trans
                 >;
         };
 
@@ -45,9 +46,9 @@
             // ,-----.-----.-----.-----.-----.                   ,-----.-----.-----.-----.-----.
             // | 1   | 2   | 3   | 4   | 5   |                   |  6  |  7  |  8  |  9  | 0   | 
             // |-----+-----+-----+-----+-----|                   |-----+-----+-----+-----+-----|
-            // |     |     |     |     |     |                   |     |     |     |     |     | 
+            // | F1  | F2  | F3  | F4  | F6  |                   |     |     |     |     |     |
             // |-----+-----+-----+-----+-----+                   |-----+-----+-----+-----+-----|
-            // | SHF |     |     |     |     |                   |     |     |     |     | SHF |
+            // | SHF |     |     |     | F12 |                   |     |     |     |     | SHF |
             // `-----'-----'-----'-----'-----'                   `-----'-----'-----'-----'-----'
             //                 .-------.-------.-------.-------.-------.-------.
             //                 |       |       |       |       |       |       |
@@ -55,16 +56,16 @@
             bindings = <
                 &trans    &trans     &trans    &trans    &trans      &trans     &trans     &trans     &trans       &trans    &trans    &trans
                 &kp N1    &kp N2   &kp N3   &kp N4   &kp N5      &trans  &trans   &kp N6  &kp N7    &kp N8  &kp N9    &kp N0
-                &trans    &trans     &trans    &trans    &trans      &trans     &trans     &trans     &trans       &trans    &trans    &trans
-                &kp LSHIFT    &trans     &trans    &trans    &trans      &trans     &trans     &trans     &trans       &trans    &trans    &kp RSHIFT
+                &kp F1    &kp F2     &kp F3    &kp F4    &kp F6      &trans     &trans     &trans     &trans       &trans    &trans    &trans
+                &kp LSHIFT    &trans     &trans    &trans    &kp F12      &trans     &trans     &trans     &trans       &trans    &trans    &kp RSHIFT
                 &trans    &trans     &trans    &trans    &trans      &trans     &trans     &trans     &trans       &trans    &trans    &trans
                 >;
         };
         layer_2 {
             // ,-----.-----.-----.-----.-----.                   ,-----.-----.-----.-----.-----.
-            // | ` ~ |     |  _  |  +  | (   |                   |  )  |HOME | UP  | END | \ | | 
+            // | ` ~ |     |  _  |  +  | (   |                   |  )  |HOME | UP  | END | \ | |
             // |-----+-----+-----+-----+-----|                   |-----+-----+-----+-----+-----|
-            // |     |     |  =  |  -  | [   |                   |  ]  |LEFT |DOWN |RIGHT| ' " | 
+            // |     |     |  =  |  -  | [   |                   |  ]  |LEFT |DOWN |RIGHT| ' " |
             // |-----+-----+-----+-----+-----+                   |-----+-----+-----+-----+-----|
             // | SHF |     |     |     | {   |                   |  }  |     |     |     | SHF |
             // `-----'-----'-----'-----'-----'                   `-----'-----'-----'-----'-----'
@@ -81,11 +82,30 @@
         };
         layer_3 {
             // ,-----.-----.-----.-----.-----.                   ,-----.-----.-----.-----.-----.
-            // |BTLDR|     |     |     |     |                   |     |     |     |     |     | 
+            // |     |     |     |     |     |                   |     |     |     |     |     |
             // |-----+-----+-----+-----+-----|                   |-----+-----+-----+-----+-----|
-            // |     |     |     |     |     |                   |     |     |BRGDN|BRGUP|     | 
+            // |     |     |     |     |     |                   |     |     |BRGDN|BRGUP|     |
             // |-----+-----+-----+-----+-----+                   |-----+-----+-----+-----+-----|
-            // |     |BTTOG|BTPRV|BTNXT|BTCLR|                   |     |MUTE |VOL- |VOL+ |PLAY | 
+            // |     |     |     |     |     |                   |     |MUTE |VOL- |VOL+ |PLAY |
+            // `-----'-----'-----'-----'-----'                   `-----'-----'-----'-----'-----'
+            //                 .-------.-------.-------.-------.-------.-------.
+            //                 |   L4  |       |       |       |       |       |
+            //                 '-------'-------'-------'-------'-------'-------'
+            bindings = <
+                &trans &trans      &trans &trans &trans &trans &trans &trans &trans         &trans       &trans       &trans
+                &trans &trans      &trans &trans &trans &trans &trans &trans &trans         &trans       &trans       &trans
+                &trans &trans      &trans &trans &trans &trans &trans &trans &trans         &kp C_BRI_DN  &kp C_BRI_UP       &trans
+                &trans &trans      &trans &trans &trans &trans      &trans &trans &kp C_MUTE &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PLAY
+                &trans &trans      &trans &mo LAYER_4 &trans &trans &trans &trans &trans         &trans       &trans       &trans
+                >;
+        };
+        layer_4 {
+            // ,-----.-----.-----.-----.-----.                   ,-----.-----.-----.-----.-----.
+            // |BTLDR|     |     |     |     |                   |     |     |     |     |     |
+            // |-----+-----+-----+-----+-----|                   |-----+-----+-----+-----+-----|
+            // |     |     |     |     |     |                   |     |     |     |     |     |
+            // |-----+-----+-----+-----+-----+                   |-----+-----+-----+-----+-----|
+            // |     |BTTOG|BTPRV|BTNXT|BTCLR|                   |     |     |     |     |     |
             // `-----'-----'-----'-----'-----'                   `-----'-----'-----'-----'-----'
             //                 .-------.-------.-------.-------.-------.-------.
             //                 |       |       |       |       |       |       |
@@ -93,8 +113,8 @@
             bindings = <
                 &trans &trans      &trans &trans &trans &trans &trans &trans &trans         &trans       &trans       &trans
                 &bootloader &trans &trans &trans &trans &trans &trans &trans &trans         &trans       &trans       &trans
-                &trans &trans      &trans &trans &trans &trans &trans &trans &trans         &kp C_BRI_DN  &kp C_BRI_UP       &trans
-                &trans &out OUT_TOG  &bt BT_PRV  &bt BT_NXT  &bt BT_CLR &trans      &trans &trans &kp C_MUTE &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PLAY
+                &trans &trans      &trans &trans &trans &trans &trans &trans &trans         &trans       &trans       &trans
+                &trans &out OUT_TOG  &bt BT_PRV  &bt BT_NXT  &bt BT_CLR &trans      &trans &trans &trans &trans       &trans       &trans
                 &trans &trans      &trans &trans &trans &trans &trans &trans &trans         &trans       &trans       &trans
                 >;
         };

@@ -18,6 +18,7 @@
 #define NUM 5
 #define SYM 6
 #define FUN 7
+#define BOOT 8
 
 / {
     behaviors {
@@ -112,11 +113,21 @@
 
         fun {
             bindings = <
-                &trans   &trans  &trans  &trans  &trans     &trans  &trans  &trans  &trans      &trans     &trans    &trans
-                &kp F12  &kp F7  &kp F8  &kp F9  &kp PSCRN  &trans  &trans  &trans  &trans      &trans     &trans    &trans
-                &kp F11  &kp F4  &kp F5  &kp F6  &trans     &trans  &trans  &trans  &kp LSHIFT  &kp LCTRL  &kp LALT  &kp LGUI
-                &kp F10  &kp F1  &kp F2  &kp F3  &trans     &trans  &trans  &trans  &trans      &trans     &trans    &trans
-                &trans   &trans  &trans  &trans  &trans     &trans  &trans  &trans  &trans      &trans     &trans    &trans
+                &trans   &trans  &trans  &trans    &trans     &trans  &trans  &trans  &trans      &trans     &trans    &trans
+                &kp F12  &kp F7  &kp F8  &kp F9    &kp PSCRN  &trans  &trans  &trans  &trans      &trans     &trans    &trans
+                &kp F11  &kp F4  &kp F5  &kp F6    &trans     &trans  &trans  &trans  &kp LSHIFT  &kp LCTRL  &kp LALT  &kp LGUI
+                &kp F10  &kp F1  &kp F2  &kp F3    &trans     &trans  &trans  &trans  &trans      &trans     &trans    &trans
+                &trans   &trans  &trans  &mo BOOT  &trans     &trans  &trans  &trans  &trans      &trans     &trans    &trans
+            >;
+        };
+
+        boot {
+            bindings = <
+                &bootloader  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                &trans       &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                &trans       &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                &trans       &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                &trans       &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
     };

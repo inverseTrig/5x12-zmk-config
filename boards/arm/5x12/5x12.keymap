@@ -10,13 +10,13 @@
 #include <dt-bindings/zmk/outputs.h>
 
 #define DEFAULT 0
-#define LAYER_1 1
-#define LAYER_2 2
-#define LAYER_3 3
-#define LAYER_4 4
-#define LAYER_5 5
-#define LAYER_6 6
-#define LAYER_7 7
+#define BUTTON 1
+#define MEDIA 2
+#define NAV 3
+#define MOUSE 4
+#define NUM 5
+#define SYM 6
+#define FUN 7
 
 / {
     behaviors {
@@ -41,15 +41,15 @@
         compatible = "zmk,keymap";
         default_layer {
             bindings = <
-                &trans          &trans       &trans        &trans            &trans              &trans            &trans            &trans             &trans            &trans        &trans         &trans
-                &kp Q           &kp W        &kp E         &kp R             &kp T               &trans            &trans            &kp Y              &kp U             &kp I         &kp O          &kp P
-                &umt LGUI A     &umt LALT S  &umt LCTRL D  &umt LSHIFT F     &kp G               &trans            &trans            &kp H              &umt LSHIFT J     &umt LCTRL K  &umt LALT L    &umt LGUI SQT
-                &ult LAYER_1 Z  &umt RALT X  &kp C         &kp V             &kp B               &trans            &trans            &kp N              &kp M             &kp COMMA     &umt RALT DOT  &ult LAYER_1 SLASH
-                &trans          &trans       &trans        &ult LAYER_2 ESC  &ult LAYER_3 SPACE  &ult LAYER_4 TAB  &ult LAYER_6 RET  &ult LAYER_5 BSPC  &ult LAYER_7 DEL  &trans        &trans         &trans
+                &trans         &trans       &trans        &trans          &trans          &trans          &trans        &trans         &trans         &trans        &trans         &trans
+                &kp Q          &kp W        &kp E         &kp R           &kp T           &trans          &trans        &kp Y          &kp U          &kp I         &kp O          &kp P
+                &umt LGUI A    &umt LALT S  &umt LCTRL D  &umt LSHIFT F   &kp G           &trans          &trans        &kp H          &umt LSHIFT J  &umt LCTRL K  &umt LALT L    &umt LGUI SQT
+                &ult BUTTON Z  &umt RALT X  &kp C         &kp V           &kp B           &trans          &trans        &kp N          &kp M          &kp COMMA     &umt RALT DOT  &ult BUTTON SLASH
+                &trans         &trans       &trans        &ult MEDIA ESC  &ult NAV SPACE  &ult MOUSE TAB  &ult SYM RET  &ult NUM BSPC  &ult FUN DEL   &trans        &trans         &trans
             >;
         };
 
-        layer_1 {
+        button {
             bindings = <
                 &trans     &trans     &trans     &trans     &trans         &trans  &trans  &trans         &trans     &trans     &trans     &trans
                 &kp LG(Z)  &kp LG(X)  &kp LG(C)  &kp LG(V)  &kp LG(LS(Z))  &trans  &trans  &kp LG(LS(Z))  &kp LG(V)  &kp LG(C)  &kp LG(X)  &kp LG(Z)
@@ -59,7 +59,7 @@
             >;
         };
 
-        layer_2 {
+        media {
             bindings = <
                 &kp F1    &kp F2    &kp F3     &kp F4      &trans  &trans  &trans  &trans  &trans        &trans        &trans      &trans
                 &trans    &trans    &trans     &trans      &trans  &trans  &trans  &trans  &kp C_BRI_DN  &kp C_BRI_UP  &kp C_PREV  &kp C_NEXT
@@ -69,7 +69,7 @@
             >;
         };
 
-        layer_3 {
+        nav {
             bindings = <
                 &trans    &trans    &trans     &trans      &trans  &trans  &trans  &trans  &trans    &trans    &trans     &trans
                 &trans    &trans    &trans     &trans      &trans  &trans  &trans  &trans  &kp HOME  &kp UP    &kp END    &trans
@@ -79,7 +79,7 @@
             >;
         };
 
-        layer_4 {
+        mouse {
             bindings = <
                 &trans    &trans    &trans     &trans      &trans  &trans  &trans  &trans  &trans    &trans    &trans     &trans
                 &trans    &trans    &trans     &trans      &trans  &trans  &trans  &trans  &kp HOME  &kp UP    &kp END    &trans
@@ -89,7 +89,7 @@
             >;
         };
 
-        layer_5 {
+        num {
             bindings = <
                 &trans     &trans  &trans  &trans   &trans     &trans     &trans  &trans  &trans      &trans     &trans    &trans
                 &kp LBKT   &kp N7  &kp N8  &kp N9   &kp RBKT   &trans     &trans  &trans  &trans      &trans     &trans    &trans
@@ -99,7 +99,7 @@
             >;
         };
 
-        layer_6 {
+        sym {
             bindings = <
                 &trans     &trans    &trans     &trans     &trans    &trans     &trans  &trans  &trans      &trans     &trans    &trans
                 &kp LBRC   &kp AMPS  &kp ASTRK  &kp LPAR   &kp RBRC  &trans     &trans  &trans  &trans      &trans     &trans    &trans
@@ -109,7 +109,7 @@
             >;
         };
 
-        layer_7 {
+        fun {
             bindings = <
                 &trans   &trans  &trans  &trans  &trans     &trans  &trans  &trans  &trans      &trans     &trans    &trans
                 &kp F12  &kp F7  &kp F8  &kp F9  &kp PSCRN  &trans  &trans  &trans  &trans      &trans     &trans    &trans

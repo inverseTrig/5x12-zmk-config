@@ -53,17 +53,17 @@
 
         button {
             bindings = <
-                &trans     &trans     &trans     &trans     &trans         &trans  &trans  &trans         &trans     &trans     &trans     &trans
-                &kp LG(Z)  &kp LG(X)  &kp LG(C)  &kp LG(V)  &kp LG(LS(Z))  &trans  &trans  &kp LG(LS(Z))  &kp LG(V)  &kp LG(C)  &kp LG(X)  &kp LG(Z)
-                &kp LGUI   &kp LALT   &kp LCTRL  &kp LSHIFT &trans         &trans  &trans  &trans         &kp LSHIFT &kp LCTRL  &kp LALT   &kp LGUI
-                &kp LG(Z)  &kp LG(X)  &kp LG(C)  &kp LG(V)  &kp LG(LS(Z))  &trans  &trans  &kp LG(LS(Z))  &kp LG(V)  &kp LG(C)  &kp LG(X)  &kp LG(Z)
-                &trans     &trans     &trans     &trans     &trans         &trans  &trans  &trans         &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans         &trans         &trans  &trans  &trans         &trans     &trans     &trans     &trans
+                &trans     &trans     &kp LC(C)  &kp LG(Z)      &kp LG(LS(Z))  &trans  &trans  &kp LG(LS(Z))  &kp LG(V)  &kp LG(C)  &kp LG(X)  &kp LG(Z)
+                &kp LGUI   &kp LALT   &kp LCTRL  &kp LSHIFT     &trans         &trans  &trans  &trans         &kp LSHIFT &kp LCTRL  &kp LALT   &kp LGUI
+                &trans     &kp LG(X)  &kp LG(C)  &kp LG(V)      &kp LG(LS(V))  &trans  &trans  &kp LG(LS(Z))  &kp LG(V)  &kp LG(C)  &kp LG(X)  &kp LG(Z)
+                &trans     &trans     &trans     &trans         &trans         &trans  &trans  &trans         &trans     &trans     &trans     &trans
             >;
         };
 
         media {
             bindings = <
-                &kp F1    &kp F2    &kp F3     &kp F4      &trans  &trans  &trans  &trans  &trans        &trans        &trans      &trans
+                &trans    &trans    &trans     &trans      &trans  &trans  &trans  &trans  &trans        &trans        &trans      &trans
                 &trans    &trans    &trans     &trans      &trans  &trans  &trans  &trans  &kp C_BRI_DN  &kp C_BRI_UP  &kp C_PREV  &kp C_NEXT
                 &kp LGUI  &kp LALT  &kp LCTRL  &kp LSHIFT  &trans  &trans  &trans  &trans  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_MUTE  &kp C_PLAY
                 &trans    &trans    &trans     &trans      &trans  &trans  &trans  &trans  &bt BT_PRV    &bt BT_NXT    &trans      &trans
@@ -73,7 +73,7 @@
 
         nav {
             bindings = <
-                &trans    &trans    &trans     &trans      &trans  &trans  &trans  &trans  &trans    &trans    &trans     &trans
+                &kp F1    &kp F2    &kp F3     &kp F4      &trans  &trans  &trans  &trans  &trans    &trans    &trans     &trans
                 &trans    &trans    &trans     &trans      &trans  &trans  &trans  &trans  &kp HOME  &kp UP    &kp END    &trans
                 &kp LGUI  &kp LALT  &kp LCTRL  &kp LSHIFT  &trans  &trans  &trans  &trans  &kp LEFT  &kp DOWN  &kp RIGHT  &trans
                 &trans    &trans    &trans     &trans      &trans  &trans  &trans  &trans  &trans    &trans    &trans     &trans

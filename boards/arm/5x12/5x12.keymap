@@ -13,6 +13,7 @@
 #define LAYER_1 1
 #define LAYER_2 2
 #define LAYER_3 3
+#define LAYER_4 4
 
 / {
     behaviors {
@@ -20,9 +21,19 @@
             compatible = "zmk,behavior-hold-tap";
             label = "HOMEROW_MODS";
             #binding-cells = <2>;
-            tapping-term-ms = <150>;
+            tapping-term-ms = <250>;
             quick-tap-ms = <0>;
             flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+
+        pht: positional_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "POSITIONAL_HOLD_TAP";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <400>;
+            quick-tap-ms = <200>;
             bindings = <&kp>, <&kp>;
         };
     };
@@ -33,14 +44,14 @@
             //  -------------------------------------------------------------------------------------------------
             // |  GRAV |  1   |  2   |  3   |  4    |  5     |   6     |  7     |  8   |  9    |   0   | BSPC   |
             // |  TAB  |  Q   |  W   |  E   |  R    |  T     |   Y     |  U     |  I   |  O    |   P   |  \     |
-            // |  ESC  |  A   |  S   |  D   |  F    |  G     |   H     |  J     |  K   |  L    |   ;   |  '     |
-            // | SHIFT |  Z   |  X   |  C   |  V    |  B     |   N     |  M     |  ,   |  .    |   /   | RET    |
+            // |  ESC  |  A   |  S   |  D   |  F    |  G     |   H     |  J     |  K   |  L    |   ;   | RET    |
+            // | SHIFT |  Z   |  X   |  C   |  V    |  B     |   N     |  M     |  ,   |  .    |   /   | .      |
             // |  CTRL |      | LALT | LGUI | L_1   | SPACE  |  SPACE  |  L_2   | LEFT |  DOWN |   UP  | RIGHT  |
             bindings = <
-                &kp ESC      &kp N1     &kp N2    &kp N3    &kp N4       &kp N5     &kp N6     &kp N7       &kp N8     &kp N9    &kp N0     &kp BSPC
+                &kp ESC            &kp N1     &kp N2    &kp N3    &kp N4       &kp N5     &kp N6     &kp N7       &kp N8     &kp N9    &kp N0     &kp BSPC
                 &kp TAB            &kp Q      &kp W     &kp E     &kp R        &kp T      &kp Y      &kp U        &kp I      &kp O     &kp P      &kp BSLH
-                &kp CAPSLOCK       &kp A      &kp S     &kp D     &kp F        &kp G      &kp H      &kp J        &kp K      &kp L     &kp SEMI   &kp SQT
-                &kp LSHIFT         &kp Z      &kp X     &kp C     &kp V        &kp B      &kp N      &kp M        &kp COMMA  &kp DOT   &kp SLASH  &kp RET
+                &kp CAPSLOCK       &kp A      &kp S     &kp D     &kp F        &kp G      &kp H      &kp J        &kp K      &kp L     &kp SEMI   &kp RET
+                &kp LSHIFT         &kp Z      &kp X     &kp C     &kp V        &kp B      &kp N      &kp M        &kp COMMA  &kp DOT   &kp SLASH  &pht RSHIFT SQT 
                 &kp LCTRL          &none      &kp LALT  &kp LGUI  &mo LAYER_1  &kp SPACE  &kp SPACE  &mo LAYER_2  &kp LEFT   &kp DOWN  &kp UP     &kp RIGHT
                 >;
         };
@@ -48,45 +59,60 @@
             // ------------------------------------------------------------------------------------------
             // |  F12  |  F1  |  F2  |  F3  |  F4  |  F5  |  F6   |  F7  |  F8  |   F9 |  F10  |  F11  |
             // |       |      |      |      |      |  (   |   )   |  7   |   8  |  9   |       |       |
-            // |       |      |      |      |      |  [   |   ]   |  4   |   5  |  6   |       |       |
+            // |       |      |      |      |      |  [   |   ]   |  4   |   5  |  6   |       | RET   |
             // |       |      |      |      | 한/영 |  {   |   }   |  1   |   2  |  3   |       |       |
             // |       |      |      |      |      |      |       | L_3  |   0  | PREV | NEXT  | PLAY  |
             bindings = <
-                &hm F12 GRAVE  &kp F1  &kp F2  &kp F3  &kp F4     &kp F5    &kp F6    &kp F7       &kp F8     &kp F9     &kp F10    &kp F11
-                &trans    &trans   &trans   &trans   &trans      &kp LPAR  &kp RPAR  &kp KP_N7    &kp KP_N8  &kp KP_N9  &trans      &trans
-                &trans    &trans   &trans   &trans   &trans      &kp LBKT  &kp RBKT  &kp KP_N4    &kp KP_N5  &kp KP_N6  &trans      &trans
-                &trans    &trans   &trans   &trans   &kp LANG1  &kp LBRC  &kp RBRC  &kp KP_N1    &kp KP_N2  &kp KP_N3  &trans      &trans
-                &trans    &trans   &trans   &trans   &trans      &trans     &trans     &mo LAYER_3  &kp KP_N0  &kp C_PREV &kp C_NEXT &kp C_PLAY
+                &hm F12 GRAVE  &kp F1   &kp F2   &kp F3   &kp F4      &kp F5     &kp F6      &kp F7       &kp F8     &kp F9      &kp F10     &kp F11
+                &trans         &trans   &trans   &trans   &trans      &kp LPAR   &kp RPAR    &kp KP_N7    &kp KP_N8  &kp KP_N9   &trans      &trans
+                &trans         &trans   &trans   &trans   &trans      &kp LBKT   &kp RBKT    &kp KP_N4    &kp KP_N5  &kp KP_N6   &trans      &kp RET
+                &trans         &trans   &trans   &trans   &kp LANG1   &kp LBRC   &kp RBRC    &kp KP_N1    &kp KP_N2  &kp KP_N3   &trans      &trans
+                &trans         &trans   &trans   &trans   &trans      &trans     &trans      &mo LAYER_3  &kp KP_N0  &kp C_PREV  &kp C_NEXT  &kp C_PLAY
                 >;
         };
         layer_2 {
             // -------------------------------------------------------------------------------------------
             // |  F12  |  F1  |  F2  |  F3  |  F4  |  F5   |  F6   |  F7   |  F8  |  F9       |   F10   |   DEL   |
             // |       |      |      |  _   |  +   |   (   |   )   | HOME  |  UP  |  END      |         |         |
-            // |       |      |      |  =   |  -   |   [   |   ]   | LEFT  | DOWN | RIGHT     |         | PRNTSCR |
-            // |       |      |      |      |      |   {   |   }   |       |      |  BRGTDOWN |  BRGTUP |         |
+            // |       |      |      |  =   |  -   |   [   |   ]   | LEFT  | DOWN | RIGHT     |         | RET     |
+            // |       |      |      |      |      |   {   |   }   |       |      |  BRGTDOWN |  BRGTUP | PRNTSCR |
             // |       |      |      |      | L_3  |       |       |       | MUTE |   VOL-    |   VOL+  |  PLAY   |
             bindings = <
-                &hm F12 GRAVE &kp F1  &kp F2  &kp F3     &kp F4        &kp F5    &kp F6     &kp F7     &kp F8     &kp F9        &kp F10       &kp DEL
-                &trans    &trans   &trans   &kp UNDER  &kp PLUS      &kp LPAR  &kp RPAR   &kp HOME   &kp UP     &kp END       &trans         &trans
-                &trans    &trans   &trans   &kp EQUAL  &kp MINUS     &kp LBKT  &kp RBKT   &kp LEFT   &kp DOWN   &kp RIGHT     &trans         &kp PSCRN
-                &trans    &trans   &trans   &trans      &trans         &kp LBRC  &kp RBRC   &trans      &trans      &kp C_BRI_DN  &kp C_BRI_UP  &trans
-                &trans    &trans   &trans   &trans      &mo LAYER_3   &trans     &trans      &trans      &kp C_MUTE &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PLAY
+                &hm F12 GRAVE &kp F1   &kp F2   &kp F3      &kp F4        &kp F5    &kp F6     &kp F7     &kp F8      &kp F9        &kp F10        &kp DEL
+                &trans        &trans   &trans   &kp UNDER   &kp PLUS      &kp LPAR  &kp RPAR   &kp HOME   &kp UP      &kp END       &trans         &trans
+                &trans        &trans   &trans   &kp EQUAL   &kp MINUS     &kp LBKT  &kp RBKT   &kp LEFT   &kp DOWN    &kp RIGHT     &trans         &kp RET
+                &trans        &trans   &trans   &trans      &trans        &kp LBRC  &kp RBRC   &trans     &trans      &kp C_BRI_DN  &kp C_BRI_UP   &kp PSCRN
+                &trans        &trans   &trans   &trans      &mo LAYER_3   &trans     &trans    &trans     &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP   &kp C_PLAY
                 >;
         };
         layer_3 {
             // -----------------------------------------------------------------------------------------------
-            // |      |      |      |      |      |      |      |      |         |        |        | BT_CLR |
-            // |      |btldr |      |      |      |      |      |      |         |        |        |        |
+            // |  L_4 |      |      |      |      |      |      |      |         |   (    |    )   | BT_CLR |
+            // |      |      |      |      |      |      |      |      |         |   [    |    ]   |        |
             // |      |      |      |      |      |      |      |      |         |        |        |        |
             // |      |      |      |      |      |      |      |      |         |        |        |        |
             // |      |      |      |      |      |      |      |      | OUT_TOG | BT_PRV | BT_NXT |        |
             bindings = <
-                &trans &trans      &trans &trans &trans &trans &trans &trans &trans         &trans       &trans       &bt BT_CLR
-                &trans &bootloader &trans &trans &trans &trans &trans &trans &trans         &trans       &trans       &trans
-                &trans &trans      &trans &trans &trans &kp N4 &trans &trans &trans         &trans       &trans       &trans
-                &trans &trans      &trans &trans &trans &trans &trans &trans &trans         &trans       &trans       &trans
-                &trans &trans      &trans &trans &trans &trans &trans &trans &out OUT_TOG  &bt BT_PRV  &bt BT_NXT  &trans
+                &mo LAYER_4 &trans      &trans &trans &trans &trans &trans &trans &trans         &kp LPAR     &kp RPAR     &bt BT_CLR
+                &trans      &trans      &trans &trans &trans &trans &trans &trans &trans         &kp LBKT     &kp RBKT     &trans
+                &trans      &trans      &trans &trans &trans &trans &trans &trans &trans         &trans       &trans       &trans
+                &trans      &trans      &trans &trans &trans &trans &trans &trans &trans         &trans       &trans       &trans
+                &trans      &trans      &trans &trans &trans &trans &trans &trans &out OUT_TOG   &bt BT_PRV   &bt BT_NXT   &trans
+                >;
+        };
+        layer_4 {
+            // -----------------------------------------------------------------------------------------------
+            // |      |      |      |      |      |      |      |      |         |        |        | BTLDR  |
+            // |      |      |      |      |      |      |      |      |         |        |        |        |
+            // |      |      |      |      |      |      |      |      |         |        |        |        |
+            // |      |      |      |      |      |      |      |      |         |        |        |        |
+            // |      |      |      |      |      |      |      |      |         |        |        |        |
+            bindings = <
+                &trans &trans  &trans &trans &trans &trans &trans &trans &trans  &trans &trans &bootloader
+                &trans &trans  &trans &trans &trans &trans &trans &trans &trans  &trans &trans &trans
+                &trans &trans  &trans &trans &trans &trans &trans &trans &trans  &trans &trans &trans
+                &trans &trans  &trans &trans &trans &trans &trans &trans &trans  &trans &trans &trans
+                &trans &trans  &trans &trans &trans &trans &trans &trans &trans  &trans &trans &trans
                 >;
         };
     };

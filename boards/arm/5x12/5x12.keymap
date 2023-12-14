@@ -15,6 +15,21 @@
 #define LAYER_3 3
 
 / {
+    behaviors {
+        bspcdel: bspc_del {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp BSPC>, <&kp DEL>;
+            mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
+        };
+    };
+};
+
+&mt {
+    tapping-term-ms = <400>;
+};
+
+/ {
     keymap {
         compatible = "zmk,keymap";
         default_layer {
@@ -23,13 +38,13 @@
             // |  TAB  |  Q   |  W   |  E   |  R    |  T     |   Y     |  U     |  I   |  O    |   P   |  \     |
             // |  ESC  |  A   |  S   |  D   |  F    |  G     |   H     |  J     |  K   |  L    |   ;   |  '     |
             // | SHIFT |  Z   |  X   |  C   |  V    |  B     |   N     |  M     |  ,   |  .    |   /   | RET    |
-            // |  CTRL |      | LALT | LGUI | L_1   | SPACE  |  SPACE  |  L_2   | LEFT |  DOWN |   UP  | RIGHT  |
+            // |  CTRL |  F13 | LALT | LGUI | L_1   | SPACE  |  SPACE  |  L_2   | LEFT |  DOWN |   UP  | RIGHT  |
             bindings = <
-                &kp GRAVE   &kp N1     &kp N2    &kp N3    &kp N4       &kp N5     &kp N6     &kp N7       &kp N8     &kp N9    &kp N0     &kp BSPC
+                &kp GRAVE   &kp N1     &kp N2    &kp N3    &kp N4       &kp N5     &kp N6     &kp N7       &kp N8     &kp N9    &kp N0     &bspcdel
                 &kp TAB     &kp Q      &kp W     &kp E     &kp R        &kp T      &kp Y      &kp U        &kp I      &kp O     &kp P      &kp BSLH
-                &kp ESC     &kp A      &kp S     &kp D     &kp F        &kp G      &kp H      &kp J        &kp K      &kp L     &kp SEMI   &kp SQT
+                &mt LCTRL ESC     &kp A      &kp S     &kp D     &kp F        &kp G      &kp H      &kp J        &kp K      &kp L     &kp SEMI   &kp SQT
                 &kp LSHIFT  &kp Z      &kp X     &kp C     &kp V        &kp B      &kp N      &kp M        &kp COMMA  &kp DOT   &kp SLASH  &kp RET
-                &kp LCTRL   &none      &kp LALT  &kp LGUI  &mo LAYER_1  &kp SPACE  &kp SPACE  &mo LAYER_2  &kp LEFT   &kp DOWN  &kp UP     &kp RIGHT
+                &kp LCTRL   &kp F13    &kp LALT  &kp LGUI  &mo LAYER_1  &kp SPACE  &kp SPACE  &mo LAYER_2  &kp LEFT   &kp DOWN  &kp UP     &kp RIGHT
                 >;
         };
         layer_1 {

@@ -38,28 +38,28 @@
             // |  TAB  |  Q   |  W   |  E   |  R    |  T     |   Y     |  U     |  I   |  O    |   P   |  \     |
             // |  ESC  |  A   |  S   |  D   |  F    |  G     |   H     |  J     |  K   |  L    |   ;   |  '     |
             // | SHIFT |  Z   |  X   |  C   |  V    |  B     |   N     |  M     |  ,   |  .    |   /   | RET    |
-            // |  CTRL |  F13 | LALT | LGUI | L_1   | SPACE  |  SPACE  |  L_2   | LEFT |  DOWN |   UP  | RIGHT  |
+            // |  F8   |  F13 | LALT | LGUI | L_1   | SPACE  |  SPACE  |  L_2   | LEFT |  DOWN |   UP  | RIGHT  |
             bindings = <
                 &kp GRAVE   &kp N1     &kp N2    &kp N3    &kp N4       &kp N5     &kp N6     &kp N7       &kp N8     &kp N9    &kp N0     &bspcdel
                 &kp TAB     &kp Q      &kp W     &kp E     &kp R        &kp T      &kp Y      &kp U        &kp I      &kp O     &kp P      &kp BSLH
                 &mt LCTRL ESC     &kp A      &kp S     &kp D     &kp F        &kp G      &kp H      &kp J        &kp K      &kp L     &kp SEMI   &kp SQT
                 &kp LSHIFT  &kp Z      &kp X     &kp C     &kp V        &kp B      &kp N      &kp M        &kp COMMA  &kp DOT   &kp SLASH  &kp RET
-                &kp LCTRL   &kp F13    &kp LALT  &kp LGUI  &mo LAYER_1  &kp SPACE  &kp SPACE  &mo LAYER_2  &kp LEFT   &kp DOWN  &kp UP     &kp RIGHT
+                &kp F8   &kp F13    &kp LALT  &kp LGUI  &mo LAYER_1  &kp SPACE  &kp SPACE  &mo LAYER_2  &kp LEFT   &kp DOWN  &kp UP     &kp RIGHT
                 >;
         };
         layer_1 {
             // ------------------------------------------------------------------------------------------
             // |  F12  |  F1  |  F2  |  F3  |  F4  |  F5  |  F6   |  F7  |  F8  |   F9 |  F10  |  F11  |
-            // |       |      |      |      |      |  (   |   )   |  7   |   8  |  9   |       |       |
-            // |       |      |      |      |      |  [   |   ]   |  4   |   5  |  6   |       |       |
-            // |       |      |      |      | 한/영 |  {   |   }   |  1   |   2  |  3   |       |       |
+            // |       |      |      |      |      |      |       |  7   |   8  |  9   |       |       |
+            // |       |      |      |      |      |      |       |  4   |   5  |  6   |       |       |
+            // |       |      |      |      | 한/영 |SCRSHT|       |  1   |   2  |  3   |       |       |
             // |       |      |      |      |      |      |       | L_3  |   0  | PREV | NEXT  | PLAY  |
             bindings = <
-                &kp F12  &kp F1  &kp F2  &kp F3  &kp F4     &kp F5    &kp F6    &kp F7       &kp F8     &kp F9     &kp F10    &kp F11
-                &trans    &trans   &trans   &trans   &trans      &kp LPAR  &kp RPAR  &kp KP_N7    &kp KP_N8  &kp KP_N9  &trans      &trans
-                &trans    &trans   &trans   &trans   &trans      &kp LBKT  &kp RBKT  &kp KP_N4    &kp KP_N5  &kp KP_N6  &trans      &trans
-                &trans    &trans   &trans   &trans   &kp LANG1  &kp LBRC  &kp RBRC  &kp KP_N1    &kp KP_N2  &kp KP_N3  &trans      &trans
-                &trans    &trans   &trans   &trans   &trans      &trans     &trans     &mo LAYER_3  &kp KP_N0  &kp C_PREV &kp C_NEXT &kp C_PLAY
+                &kp F12   &kp F1   &kp F2   &kp F3   &kp F4    &kp F5          &kp F6  &kp F7       &kp F8     &kp F9     &kp F10    &kp F11
+                &trans    &trans   &trans   &trans   &trans    &trans          &trans  &kp KP_N7    &kp KP_N8  &kp KP_N9  &trans     &trans
+                &trans    &trans   &trans   &trans   &trans    &trans          &trans  &kp KP_N4    &kp KP_N5  &kp KP_N6  &trans     &trans
+                &trans    &trans   &trans   &trans   &kp LANG1 &kp LG(LS(N4))  &trans  &kp KP_N1    &kp KP_N2  &kp KP_N3  &trans     &trans
+                &trans    &trans   &trans   &trans   &trans    &trans          &trans  &mo LAYER_3  &kp KP_N0  &kp C_PREV &kp C_NEXT &kp C_PLAY
                 >;
         };
         layer_2 {

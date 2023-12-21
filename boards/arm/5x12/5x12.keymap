@@ -8,15 +8,33 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/mouse.h>
 
 #define DEFAULT 0
 #define LAYER_1 1
 #define LAYER_2 2
 #define LAYER_3 3
+#define LAYER_4 4
+#define LAYER_5 5
+
+#define U_MOUSE_MOVE_MAX 2000
+
+#define MV_UP MOVE_VERT(-U_MOUSE_MOVE_MAX)
+#define MV_DN MOVE_VERT(U_MOUSE_MOVE_MAX)
+#define MV_LT MOVE_HOR(-U_MOUSE_MOVE_MAX)
+#define MV_RT MOVE_HOR(U_MOUSE_MOVE_MAX)
+
+#define U_MOUSE_SCROLL_MAX 10
+
+#define SCRL_UP SCROLL_VERT(U_MOUSE_SCROLL_MAX)
+#define SCRL_DN SCROLL_VERT(-U_MOUSE_SCROLL_MAX)
+#define SCRL_LT SCROLL_HOR(U_MOUSE_SCROLL_MAX)
+#define SCRL_RT SCROLL_HOR(-U_MOUSE_SCROLL_MAX)
 
 / {
     behaviors {
         bspcdel: bspc_del {
+            label = "bspc_del";
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp BSPC>, <&kp DEL>;
@@ -38,13 +56,13 @@
             // |  TAB  |  Q   |  W   |  E   |  R    |  T     |   Y     |  U     |  I   |  O    |   P   |  \     |
             // |  ESC  |  A   |  S   |  D   |  F    |  G     |   H     |  J     |  K   |  L    |   ;   |  '     |
             // | SHIFT |  Z   |  X   |  C   |  V    |  B     |   N     |  M     |  ,   |  .    |   /   | RET    |
-            // |  F8   |  F13 | LALT | LGUI | L_1   | SPACE  |  SPACE  |  L_2   | LEFT |  DOWN |   UP  | RIGHT  |
+            // |  F8   |  L_4 | LALT | LGUI | L_1   | SPACE  |  SPACE  |  L_2   | LEFT |  DOWN |   UP  | RIGHT  |
             bindings = <
                 &kp GRAVE   &kp N1     &kp N2    &kp N3    &kp N4       &kp N5     &kp N6     &kp N7       &kp N8     &kp N9    &kp N0     &bspcdel
                 &kp TAB     &kp Q      &kp W     &kp E     &kp R        &kp T      &kp Y      &kp U        &kp I      &kp O     &kp P      &kp BSLH
                 &mt LCTRL ESC     &kp A      &kp S     &kp D     &kp F        &kp G      &kp H      &kp J        &kp K      &kp L     &kp SEMI   &kp SQT
                 &kp LSHIFT  &kp Z      &kp X     &kp C     &kp V        &kp B      &kp N      &kp M        &kp COMMA  &kp DOT   &kp SLASH  &kp RET
-                &kp F8   &kp F13    &kp LALT  &kp LGUI  &mo LAYER_1  &kp SPACE  &kp SPACE  &mo LAYER_2  &kp LEFT   &kp DOWN  &kp UP     &kp RIGHT
+                &kp F8   &mo LAYER_4    &kp LALT  &kp LGUI  &mo LAYER_1  &kp SPACE  &kp SPACE  &mo LAYER_2  &kp LEFT   &kp DOWN  &kp UP     &kp RIGHT
                 >;
         };
         layer_1 {
@@ -90,6 +108,36 @@
                 &trans &trans      &trans &trans &trans &kp N4 &trans &trans &trans         &trans       &trans       &trans
                 &trans &trans      &trans &trans &trans &trans &trans &trans &trans         &trans       &trans       &trans
                 &trans &trans      &trans &trans &trans &trans &trans &trans &out OUT_TOG  &bt BT_PRV  &bt BT_NXT  &trans
+                >;
+        };
+        layer_4 {
+            // ----------------------------------------------------------------------------------------
+            // |      |      |      |      |      |      |      |      |      |      |      |     |
+            // |      |      |      |      |      |      |      | L_CK |MS_UP | R_CK |      |     |
+            // |      |      |      |      |      |      | M_CK |MS_LT |MS_DN |MS_RT |      |     |
+            // |      |      |      |      |      |      |      |      |      |      |      |     |
+            // |  L_5 |      |      |      |      |      |      |      |      |      |      |     |
+            bindings = <
+                &trans      &trans &trans &trans &trans &trans &trans    &trans     &trans     &trans     &trans &trans 
+                &trans      &trans &trans &trans &trans &trans &trans    &mkp LCLK  &mmv MV_UP &mkp RCLK  &trans &trans 
+                &trans      &trans &trans &trans &trans &trans &mkp MCLK &mmv MV_LT &mmv MV_DN &mmv MV_RT &trans &trans 
+                &trans      &trans &trans &trans &trans &trans &trans    &trans     &trans     &trans     &trans &trans 
+                &mo LAYER_5 &trans &trans &trans &trans &trans &trans    &trans     &trans     &trans     &trans &trans 
+                >;
+        };
+        layer_5 {
+            // ----------------------------------------------------------------------------------------
+            // |      |      |      |      |      |      |      |      |      |      |      |     |
+            // |      |      |      |      |      |      |      | L_CK |SCR_UP| R_CK |      |     |
+            // |      |      |      |      |      |      | M_CK |SCR_LT|SCR_DN|SCR_RT|      |     |
+            // |      |      |      |      |      |      |      |      |      |      |      |     |
+            // |  L_5 |      |      |      |      |      |      |      |      |      |      |     |
+            bindings = <
+                &trans      &trans &trans &trans &trans &trans &trans    &trans       &trans       &trans       &trans &trans 
+                &trans      &trans &trans &trans &trans &trans &trans    &mkp LCLK    &mwh SCRL_UP &mkp RCLK    &trans &trans 
+                &trans      &trans &trans &trans &trans &trans &mkp MCLK &mwh SCRL_LT &mwh SCRL_DN &mwh SCRL_RT &trans &trans 
+                &trans      &trans &trans &trans &trans &trans &trans    &trans       &trans       &trans       &trans &trans 
+                &mo LAYER_5 &trans &trans &trans &trans &trans &trans    &trans       &trans       &trans       &trans &trans 
                 >;
         };
     };

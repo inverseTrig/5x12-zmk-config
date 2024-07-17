@@ -8,3 +8,5 @@ Fork this repository and on every push, Github Actions will create a new firmwar
 
 The default layout image can be found within the repository. There is a `BOOTLOADER` key in layer 3 that puts the keyboard into a flashable state for a new firmware. If this key is not found, the only way to flash the keyboard is to use the physical buttons on the MCU - to access the MCU, the screw on the back of the keyboard needs to be removed.
 
+![5x12 Keymap](./keymap.ortho.svg)
+
